@@ -1,0 +1,37 @@
+# Maintainer: Drak Kalipka <d.kalipka@stosw.net>
+
+pkgname=libcec-git
+pkgver=r1973.a94d311
+pkgrel=1
+pkgdesc="Pulse-Eight's libcec for the Pulse-Eight USB-CEC adapter"
+arch=('i686' 'x86_64')
+url="https://github.com/kalipka/libcec"
+license=('GPL')
+makedepends=('git' 'p8-platform>=2.0' 'cmake')
+depends=('udev>=151' 'lockdev' 'p8-platform>=2.0' 'libxrandr' 'python')
+provides=('libcec')
+conflicts=('libcec')
+options=('!libtool')
+source=("${pkgname}"::'git+https://github.com/kalipka/libcec.git')
+md5sums=('SKIP')
+
+pkgver() {
+  cd "${pkgname}"
+  printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+}
+
+build() {
+  cd "${srcdir}/${pkgname}"
+  cmake . \
+    -DCMAKE_BUILD_TYPE=Release \
+    -DBUILD_SHARED_LIBS=1 \
+    -DCMAKE_INSTALL_PREFIX=/usr \
+    -DCMAKE_INSTALL_LIBDIR=/usr/lib \
+    -DCMAKE_INSTALL_LIBDIR_NOARCH=/usr/lib
+  make
+}
+
+package() {
+  cd "${srcdir}/${pkgname}"
+  make DESTDIR="${pkgdir}/" install
+}
