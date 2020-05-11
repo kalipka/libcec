@@ -1,5 +1,3 @@
-# Maintainer: Drak Kalipka <d.kalipka@stosw.net>
-
 pkgname=libcec-git
 pkgver=r1973.a94d311
 pkgrel=1
