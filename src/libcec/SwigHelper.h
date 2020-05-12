@@ -203,7 +203,6 @@ namespace CEC
     static void CBCecAlert(void* param, const CEC::libcec_alert alert, const CEC::libcec_parameter parameter)
     {
       PyGILState_STATE gstate = PyGILState_Ensure();
-
       CallPythonCallback(param, PYTHON_CB_ALERT,
                          Py_BuildValue("(I,s)", alert, 
                             parameter.paramType == CEC::CEC_PARAMETER_TYPE_STRING ?
