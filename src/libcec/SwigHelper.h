@@ -200,7 +200,7 @@ namespace CEC
       PyGILState_Release(gstate);
     }
 
-    static void CBCecAlert(void* param, const CEC::libcec_alert alert, CEC::libcec_parameter parameter)
+    static void CBCecAlert(void* param, const CEC::libcec_alert alert, const CEC::libcec_parameter parameter)
     {
       PyGILState_STATE gstate = PyGILState_Ensure();
 
