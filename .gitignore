@@ -1,8 +1,11 @@
+/archlinux/
+!/archlinux/PKGBUILD
 /build
 /cmake-build
 /.cproject
 /.project
 /.settings
+/.vscode/
 /compile
 *.dll
 *.exe
